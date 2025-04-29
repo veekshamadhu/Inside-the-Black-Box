@@ -1,0 +1,451 @@
+-- database: ./database.sqlite
+
+ SELECT m.match_id,
+    m.country_id,
+  home_team_api_id,
+  away_team_api_id,
+  m.mdatetime,
+  p1.pdatetime,
+  home_player_1,
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p1.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p1.birthday))
+  ) AS home_player1_age,
+  p1.overall_rating AS home_player1_overall_rating,
+  
+  home_player_2, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p2.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p2.birthday))
+  ) AS home_player2_age,
+  p2.overall_rating AS home_player2_overall_rating,
+
+  home_player_3, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p3.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p3.birthday))
+  ) AS home_player3_age,
+  p3.overall_rating AS home_player3_overall_rating,
+
+  home_player_4, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p4.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p4.birthday))
+  ) AS home_player4_age,
+  p4.overall_rating AS home_player4_overall_rating,
+
+  home_player_5, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p5.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p5.birthday))
+  ) AS home_player5_age,
+  p5.overall_rating AS home_player5_overall_rating,
+
+  home_player_6, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p6.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p6.birthday))
+  ) AS home_player6_age,
+  p6.overall_rating AS home_player6_overall_rating,
+
+  home_player_7, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p7.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p7.birthday))
+  ) AS home_player7_age,
+  p7.overall_rating AS home_player7_overall_rating,
+
+  home_player_8, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p8.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p8.birthday))
+  ) AS home_player8_age,
+  p8.overall_rating AS home_player8_overall_rating,
+
+  home_player_9, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p9.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p9.birthday))
+  ) AS home_player9_age,
+  p9.overall_rating AS home_player9_overall_rating,
+
+  home_player_10, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p10.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p10.birthday))
+  ) AS home_player10_age,
+  p10.overall_rating AS home_player10_overall_rating,
+  
+  home_player_11, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p11.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p11.birthday))
+  ) AS home_player11_age,
+  p11.overall_rating AS home_player11_overall_rating,
+
+  ROUND((p1.height + p2.height + p3.height + p4.height + p5.height + 
+  p6.height + p7.height + p8.height + p9.height + p10.height + p11.height)/11,
+   2) AS home_team_average_height,
+
+  ROUND((p1.attacking_work_rate + p2.attacking_work_rate + p3.attacking_work_rate + 
+  p4.attacking_work_rate + p5.attacking_work_rate + p6.attacking_work_rate + 
+  p7.attacking_work_rate + p8.attacking_work_rate + p9.attacking_work_rate + 
+  p10.attacking_work_rate + p11.attacking_work_rate)/11,
+   2) AS home_team_average_attacking_work_rate,
+
+  ROUND((p1.defensive_work_rate + p2.defensive_work_rate + p3.defensive_work_rate + 
+  p4.defensive_work_rate + p5.defensive_work_rate + p6.defensive_work_rate + 
+  p7.defensive_work_rate + p8.defensive_work_rate + p9.defensive_work_rate + 
+  p10.defensive_work_rate + p11.defensive_work_rate)/11,
+   2) AS home_team_average_defensive_work_rate,
+
+  ROUND((p1.avg_fieldskills + p2.avg_fieldskills + p3.avg_fieldskills + 
+  p4.avg_fieldskills + p5.avg_fieldskills + p6.avg_fieldskills + 
+  p7.avg_fieldskills + p8.avg_fieldskills + p9.avg_fieldskills + 
+  p10.avg_fieldskills + p11.avg_fieldskills)/11,
+   2) AS home_team_average_fieldskills,
+
+  ROUND((p1.avg_shootingskills + p2.avg_shootingskills + p3.avg_shootingskills + 
+  p4.avg_shootingskills + p5.avg_shootingskills + p6.avg_shootingskills + 
+  p7.avg_shootingskills + p8.avg_shootingskills + p9.avg_shootingskills + 
+  p10.avg_shootingskills + p11.avg_shootingskills)/11,
+   2) AS home_team_average_shootingskills,
+
+  ROUND((p1.avg_physicalattributes + p2.avg_physicalattributes + p3.avg_physicalattributes + 
+  p4.avg_physicalattributes + p5.avg_physicalattributes + p6.avg_physicalattributes + 
+  p7.avg_physicalattributes + p8.avg_physicalattributes + p9.avg_physicalattributes + 
+  p10.avg_physicalattributes + p11.avg_physicalattributes)/11,
+   2) AS home_team_average_physicalattributes,
+
+  ROUND((p1.avg_goalkeepingskills + p2.avg_goalkeepingskills + p3.avg_goalkeepingskills + 
+  p4.avg_goalkeepingskills + p5.avg_goalkeepingskills + p6.avg_goalkeepingskills + 
+  p7.avg_goalkeepingskills + p8.avg_goalkeepingskills + p9.avg_goalkeepingskills + 
+  p10.avg_goalkeepingskills + p11.avg_goalkeepingskills)/11,
+   2) AS home_team_average_goalkeepingskills,
+
+  
+  away_player_1,
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p12.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p12.birthday))
+  ) AS away_player1_age,
+  p12.overall_rating AS away_player1_overall_rating,
+  
+  away_player_2, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p13.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p13.birthday))
+  ) AS away_player2_age,
+  p13.overall_rating AS away_player2_overall_rating,
+
+  away_player_3, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p14.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p14.birthday))
+  ) AS away_player3_age,
+  p14.overall_rating AS away_player3_overall_rating,
+
+  away_player_4, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p15.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p15.birthday))
+  ) AS away_player4_age,
+  p15.overall_rating AS away_player4_overall_rating,
+
+  away_player_5, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p16.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p16.birthday))
+  ) AS away_player5_age,
+  p16.overall_rating AS away_player5_overall_rating,
+
+  away_player_6, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p17.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p17.birthday))
+  ) AS away_player6_age,
+  p17.overall_rating AS away_player6_overall_rating,
+
+  away_player_7, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p18.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p18.birthday))
+  ) AS away_player7_age,
+  p18.overall_rating AS away_player7_overall_rating,
+
+  away_player_8, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p19.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p19.birthday))
+  ) AS away_player8_age,
+  p19.overall_rating AS away_player8_overall_rating,
+
+  away_player_9, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p20.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p20.birthday))
+  ) AS away_player9_age,
+  p20.overall_rating AS away_player9_overall_rating,
+
+  away_player_10, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p21.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p21.birthday))
+  ) AS away_player10_age,
+  p21.overall_rating AS away_player10_overall_rating,
+  
+  away_player_11, 
+  (CAST(STRFTIME('%Y', m.mdatetime) AS INTEGER) - CAST(STRFTIME('%Y', p22.birthday) AS INTEGER)
+   - (STRFTIME('%m-%d', m.mdatetime) < STRFTIME('%m-%d', p22.birthday))
+  ) AS away_player11_age,
+  p22.overall_rating AS away_player11_overall_rating,
+
+  ROUND((p12.height + p13.height + p14.height + p15.height + p16.height + 
+  p17.height + p18.height + p19.height + p20.height + p21.height + p22.height)/11,
+   2) AS away_team_average_height,
+
+  ROUND((p12.attacking_work_rate + p13.attacking_work_rate + p14.attacking_work_rate 
+  + p15.attacking_work_rate + p16.attacking_work_rate + 
+  p17.attacking_work_rate + p18.attacking_work_rate + p19.attacking_work_rate + 
+  p20.attacking_work_rate + p21.attacking_work_rate + p22.attacking_work_rate)/11,
+   2) AS away_team_average_attacking_work_rate,
+
+  ROUND((p12.defensive_work_rate + p13.defensive_work_rate + p14.defensive_work_rate + 
+  p15.defensive_work_rate + p16.defensive_work_rate + p17.defensive_work_rate + 
+  p18.defensive_work_rate + p19.defensive_work_rate + p20.defensive_work_rate + 
+  p21.defensive_work_rate + p22.defensive_work_rate)/11,
+   2) AS away_team_average_defensive_work_rate,
+
+  ROUND((p12.avg_fieldskills + p13.avg_fieldskills + p14.avg_fieldskills + 
+  p15.avg_fieldskills + p16.avg_fieldskills + p17.avg_fieldskills + 
+  p18.avg_fieldskills + p19.avg_fieldskills + p20.avg_fieldskills + 
+  p21.avg_fieldskills + p22.avg_fieldskills)/11,
+   2) AS away_team_average_fieldskills,
+
+  ROUND((p12.avg_shootingskills + p13.avg_shootingskills + p14.avg_shootingskills + 
+  p15.avg_shootingskills + p16.avg_shootingskills + p17.avg_shootingskills + 
+  p18.avg_shootingskills + p19.avg_shootingskills + p20.avg_shootingskills + 
+  p21.avg_shootingskills + p22.avg_shootingskills)/11,
+   2) AS away_team_average_shootingskills,
+
+  ROUND((p12.avg_physicalattributes + p13.avg_physicalattributes + p14.avg_physicalattributes + 
+  p15.avg_physicalattributes + p16.avg_physicalattributes + p17.avg_physicalattributes + 
+  p18.avg_physicalattributes + p19.avg_physicalattributes + p20.avg_physicalattributes + 
+  p21.avg_physicalattributes + p22.avg_physicalattributes)/11,
+   2) AS away_team_average_physicalattributes,
+
+  ROUND((p12.avg_goalkeepingskills + p13.avg_goalkeepingskills + p14.avg_goalkeepingskills + 
+  p15.avg_goalkeepingskills + p16.avg_goalkeepingskills + p17.avg_goalkeepingskills + 
+  p18.avg_goalkeepingskills + p19.avg_goalkeepingskills + p20.avg_goalkeepingskills + 
+  p21.avg_goalkeepingskills + p22.avg_goalkeepingskills)/11,
+   2) AS away_team_average_goalkeepingskills,
+  
+  ht.buildUpskills,
+  ht.chanceCreationSkills,
+  ht.defenceSkills,
+  ht.buildUpPlayPositioningClass, 
+  ht.defenceDefenderLineClass,
+  ht.chanceCreationPositioningClass, 
+
+  att.buildUpskills,
+  att.chanceCreationSkills,
+  att.defenceSkills,
+  att.buildUpPlayPositioningClass, 
+  att.defenceDefenderLineClass,
+  att.chanceCreationPositioningClass, 
+    winner
+
+FROM matchattributes m
+
+LEFT JOIN teamscombined ht
+ON m.home_team_api_id = ht.team_api_id
+AND ht.date = (
+        SELECT MAX(date)
+        FROM teamscombined
+        WHERE m.home_team_api_id = team_api_id
+          AND date <= mdatetime
+    )
+
+LEFT JOIN teamscombined att
+ON m.away_team_api_id = att.team_api_id
+AND att.date = (
+        SELECT MAX(date)
+        FROM teamscombined
+        WHERE m.away_team_api_id = team_api_id
+          AND date <= mdatetime
+    )
+
+LEFT JOIN playersattributes p1
+ON m.home_player_1 = p1.player_api_id
+AND p1.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.home_player_1 = player_api_id
+          AND pdatetime <= mdatetime
+    )
+LEFT JOIN playersattributes p2
+ON m.home_player_2 = p2.player_api_id
+AND p2.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.home_player_2 = player_api_id
+          AND pdatetime <= mdatetime
+    )
+
+LEFT JOIN playersattributes p3
+ON m.home_player_3 = p3.player_api_id
+AND p3.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.home_player_3 = player_api_id
+          AND pdatetime <= mdatetime
+    )
+
+LEFT JOIN playersattributes p4
+ON m.home_player_4 = p4.player_api_id
+AND p4.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.home_player_4 = player_api_id
+        AND pdatetime <= mdatetime
+    )
+
+LEFT JOIN playersattributes p5
+ON m.home_player_5 = p5.player_api_id
+AND p5.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.home_player_5 = player_api_id
+        AND pdatetime <= mdatetime
+    )
+
+LEFT JOIN playersattributes p6
+ON m.home_player_6 = p6.player_api_id
+AND p6.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.home_player_6 = player_api_id
+        AND pdatetime <= mdatetime
+    )
+
+LEFT JOIN playersattributes p7
+ON m.home_player_7 = p7.player_api_id
+AND p7.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.home_player_7 = player_api_id
+        AND pdatetime <= mdatetime
+    )
+
+    LEFT JOIN playersattributes p8
+    ON m.home_player_8 = p8.player_api_id
+    AND p8.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.home_player_8 = player_api_id
+        AND pdatetime <= mdatetime
+    )
+
+    LEFT JOIN playersattributes p9
+    ON m.home_player_9 = p9.player_api_id
+    AND p9.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.home_player_9 = player_api_id
+        AND pdatetime <= mdatetime
+    )
+
+    LEFT JOIN playersattributes p10
+    ON m.home_player_10 = p10.player_api_id
+    AND p10.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.home_player_10 = player_api_id
+        AND pdatetime <= mdatetime
+    )
+
+    LEFT JOIN playersattributes p11
+    ON m.home_player_11 = p11.player_api_id
+    AND p11.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.home_player_11 = player_api_id
+        AND pdatetime <= mdatetime
+    )
+
+    LEFT JOIN playersattributes p12
+    ON m.away_player_1 = p12.player_api_id
+    AND p12.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.away_player_1 = player_api_id
+          AND pdatetime <= mdatetime
+    )
+
+    LEFT JOIN playersattributes p13
+    ON m.away_player_2 = p13.player_api_id
+    AND p13.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.away_player_2 = player_api_id
+          AND pdatetime <= mdatetime
+    )
+
+    LEFT JOIN playersattributes p14
+    ON m.away_player_3 = p14.player_api_id
+    AND p14.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.away_player_3 = player_api_id
+          AND pdatetime <= mdatetime
+    )
+
+    LEFT JOIN playersattributes p15
+    ON m.away_player_4 = p15.player_api_id
+    AND p15.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.away_player_4 = player_api_id
+          AND pdatetime <= mdatetime
+    )
+
+    LEFT JOIN playersattributes p16
+    ON m.away_player_5 = p16.player_api_id
+    AND p16.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.away_player_5 = player_api_id
+          AND pdatetime <= mdatetime
+    )
+
+    LEFT JOIN playersattributes p17
+    ON m.away_player_6 = p17.player_api_id
+    AND p17.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.away_player_6 = player_api_id
+        AND pdatetime <= mdatetime
+    )
+
+    LEFT JOIN playersattributes p18
+    ON m.away_player_7 = p18.player_api_id
+    AND p18.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.away_player_7 = player_api_id
+        AND pdatetime <= mdatetime
+    )
+
+    LEFT JOIN playersattributes p19
+    ON m.away_player_8 = p19.player_api_id
+    AND p19.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.away_player_8 = player_api_id
+        AND pdatetime <= mdatetime
+    )
+
+    LEFT JOIN playersattributes p20
+    ON m.away_player_9 = p20.player_api_id
+    AND p20.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.away_player_9 = player_api_id
+        AND pdatetime <= mdatetime
+    )
+
+    LEFT JOIN playersattributes p21
+    ON m.away_player_10 = p21.player_api_id
+    AND p21.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.away_player_10 = player_api_id
+        AND pdatetime <= mdatetime
+    )
+
+    LEFT JOIN playersattributes p22
+    ON m.away_player_11 = p22.player_api_id
+    AND p22.pdatetime = (
+        SELECT MAX(pdatetime)
+        FROM playersattributes
+        WHERE m.away_player_11 = player_api_id
+          AND pdatetime <= mdatetime)d;
