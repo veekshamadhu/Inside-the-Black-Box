@@ -1,0 +1,1 @@
+This file contains the extraction and initial feature engineering of the European Football database. The next steps - dimension reduction and model building - will take place in a python file. The source of this data is Kaggle: https://www.kaggle.com/datasets/hugomathien/soccer
